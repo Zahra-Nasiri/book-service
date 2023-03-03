@@ -11,3 +11,6 @@ class TestSetup(TestConfiguration):
 
     def get_book(self, book_id):
         return self.book_collection.find_one({"_id": ObjectId(book_id)})
+
+    def create_fake_book(self):
+        return self.book_collection.insert_one(self.fake_book)

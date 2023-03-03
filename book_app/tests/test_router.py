@@ -16,3 +16,9 @@ class TestRouter(TestSetup):
         assert book["author"] == self.fake_book["author"]
         assert book["uid"] == self.fake_book["uid"]
 
+    def test_user_can_get_all_books(self):
+        query = self.create_fake_book()
+        response = test_client.get("/")
+        response = response.json()
+        assert response[-1]["_id"] == str(query.inserted_id)
+        assert response[-1]["title"] == self.fake_book["title"]
