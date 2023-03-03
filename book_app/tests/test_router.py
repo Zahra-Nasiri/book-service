@@ -43,3 +43,20 @@ class TestRouter(TestSetup):
         test_client.delete(f"/{query.inserted_id}")
         book =  self.get_book(query.inserted_id)
         assert not book
+
+    def test_admin_can_edit_book(self):
+        book_dict = {
+            "title": "test title",
+            "author": "test author",
+            "uid": None
+        }
+        query = self.create_book_by_inforamation(book_dict)
+        payload = {
+            "uid": "asgdalkljkljlk"
+        }
+        response = test_client.patch(f"{query.inserted_id}", json=payload)
+        book = self.get_book(query.inserted_id)
+        response = response.json()
+        assert book["title"] == response["title"]
+        assert book["author"] == response["author"]
+        assert book["uid"] == payload["uid"]
