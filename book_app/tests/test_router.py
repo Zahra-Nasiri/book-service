@@ -32,3 +32,14 @@ class TestRouter(TestSetup):
         assert response["title"] == book["title"]
         assert response["author"] == book["author"]
         assert response["uid"] == book["uid"]
+
+    def test_admin_can_delete_book(self):
+        book_dict = {
+            "title": "tobe deleted book",
+            "author": "tobe delted author",
+            "uid": "tobe dleted uid"
+        }
+        query = self.create_book_by_inforamation(book_dict)
+        test_client.delete(f"/{query.inserted_id}")
+        book =  self.get_book(query.inserted_id)
+        assert not book

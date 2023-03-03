@@ -22,3 +22,6 @@ class TestSetup(TestConfiguration):
 
     def create_fake_book_to_get(self):
         return self.book_collection.insert_one(self.fake_book_to_get)
+
+    def create_book_by_inforamation(self, book):
+        return self.book_collection.insert_one(book)
