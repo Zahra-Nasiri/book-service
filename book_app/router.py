@@ -15,3 +15,7 @@ class BookRouter:
     @router.post("/")
     async def create_book(self, book: Book):
         return await db_client.create_book(book)
+
+    @router.get("/")
+    async def get_all_books(self):
+        return await db_client.get_all_books()

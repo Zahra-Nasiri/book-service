@@ -20,3 +20,11 @@ class Database(DatabaseConfiguration):
         result = await self.get_book(query.inserted_id)
         return result
 
+    @start_db()
+    async def get_all_books(self):
+        query = base_db.client.book_collection.find()
+        book_list = []
+        async for book in query:
+            book["_id"] = str(book["_id"])
+            book_list.append(book)
+        return book_list
