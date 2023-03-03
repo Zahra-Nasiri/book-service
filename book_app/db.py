@@ -28,3 +28,9 @@ class Database(DatabaseConfiguration):
             book["_id"] = str(book["_id"])
             book_list.append(book)
         return book_list
+
+    @start_db()
+    async def get_single_book_by_id(self, book_id: str):
+        query = await base_db.client.book_collection.find_one({"_id": ObjectId(book_id)})
+        query["_id"] = str(query["_id"])
+        return query

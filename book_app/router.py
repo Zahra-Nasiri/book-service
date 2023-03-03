@@ -19,3 +19,7 @@ class BookRouter:
     @router.get("/")
     async def get_all_books(self):
         return await db_client.get_all_books()
+
+    @router.get("/{book_id}")
+    async def get_single_book_by_id(self, book_id: str):
+        return await db_client.get_single_book_by_id(book_id)
