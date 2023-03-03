@@ -39,3 +39,16 @@ class Database(DatabaseConfiguration):
     async def delete_book(self, book_id: str):
         query = await base_db.client.book_collection.delete_one({"_id": ObjectId(book_id)})
         return query.deleted_count
+
+    @start_db()
+    async def partial_update_book(self, book_id: str, book: UpdateBook):
+        book_update = {}
+        for key in book.dict():
+            if book.dict()[key]:
+                book_update[key] = book.dict()[key]
+        query = await base_db.client.book_collection.update_one({"_id": ObjectId(book_id)}, {"$set": book_update})
+        if query.modified_count:
+            return await self.get_book(ObjectId(book_id))
+        else:
+            return query.modified_count
+
