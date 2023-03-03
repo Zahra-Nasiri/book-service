@@ -34,3 +34,8 @@ class Database(DatabaseConfiguration):
         query = await base_db.client.book_collection.find_one({"_id": ObjectId(book_id)})
         query["_id"] = str(query["_id"])
         return query
+
+    @start_db()
+    async def delete_book(self, book_id: str):
+        query = await base_db.client.book_collection.delete_one({"_id": ObjectId(book_id)})
+        return query.deleted_count

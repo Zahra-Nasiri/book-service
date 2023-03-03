@@ -23,3 +23,7 @@ class BookRouter:
     @router.get("/{book_id}")
     async def get_single_book_by_id(self, book_id: str):
         return await db_client.get_single_book_by_id(book_id)
+
+    @router.delete("/{book_id}")
+    async def delete_book(self, book_id: str):
+        return await db_client.delete_book(book_id)
