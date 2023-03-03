@@ -8,9 +8,17 @@ class TestSetup(TestConfiguration):
         "author": "test author",
         "uid": None
     }
+    fake_book_to_get = {
+        "title": "test get book",
+        "author": "test get author",
+        "uid": "1244q57923597982953"
+    }
 
     def get_book(self, book_id):
         return self.book_collection.find_one({"_id": ObjectId(book_id)})
 
     def create_fake_book(self):
         return self.book_collection.insert_one(self.fake_book)
+
+    def create_fake_book_to_get(self):
+        return self.book_collection.insert_one(self.fake_book_to_get)

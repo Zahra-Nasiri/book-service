@@ -22,3 +22,13 @@ class TestRouter(TestSetup):
         response = response.json()
         assert response[-1]["_id"] == str(query.inserted_id)
         assert response[-1]["title"] == self.fake_book["title"]
+
+    def test_user_can_get_single_book_by_id(self):
+        query = self.create_fake_book_to_get()
+        book = self.get_book(query.inserted_id)
+        book["_id"] = str(book["_id"])
+        response = test_client.get(f'/{book["_id"]}')
+        response = response.json()
+        assert response["title"] == book["title"]
+        assert response["author"] == book["author"]
+        assert response["uid"] == book["uid"]
