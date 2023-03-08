@@ -1,7 +1,7 @@
 
 # book-service
 
-This is book-service of library project and has connection with [communication-lyer](https://github.com/Zahra-Nasiri/communication-layer)
+This is book-service of library project and has connection with [communication-layer](https://github.com/Zahra-Nasiri/communication-layer)
  and [user-service](https://github.com/Zahra-Nasiri/user-service)
  projects.
 
