@@ -32,7 +32,7 @@ Install my-project with pip
 
 ```bash
   python -m venv venv
-  venv\scripts\avtivate
+  venv\scripts\activate
   pip install -r requirements.txt
 ```
 
@@ -63,7 +63,7 @@ Install dependencies
 
 ```bash
   python -m venv venv
-  venv\scripts\avtivate
+  venv\scripts\activate
   pip install -r requirements.txt
 ```
 
