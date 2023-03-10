@@ -1,0 +1,25 @@
+version: '3.10'
+
+services:
+  mongodb:
+    image: mongo
+    environment:
+      MONGO_DB: app
+      MONGO_INITDB_ROOT_USERNAME: mongouser
+      MONGO_INITDB_ROOT_PASSWORD: mongopassword
+    ports:
+      - 27017:27017
+    volumes:
+      - ./data:/data/db
+  backend:
+    build: .
+    command: uvicorn main:app --host 0.0.0.0 --port 1000
+    ports:
+      - "1000:1000"
+    depends_on:
+      - mongodb
+    links:
+      - "mongodb:mongodb"
+
+volumes:
+  data:
